@@ -1,0 +1,123 @@
+{% load static %}
+
+<section class="relative mx-auto">
+    <!-- navbar -->
+  <nav class="flex justify-between w-screen" style="background-color: #e66465 ;">
+    <div class="px-5 xl:px-12 py-6 flex w-full items-center">
+
+
+      <a href="/" class="flex items-center">
+          <img src="{% static 'images/logo.png' %}" class="mr-3 h-12 sm:h-9" alt="Flowbite Logo" />
+          <span class="self-center text-xl font-bold whitespace-nowrap dark:text-white">VirtualMarket</span>
+      </a>
+      
+
+
+
+      <!-- Nav Links -->
+      <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12 flex items-center">
+        <li><a class="hover:text-gray-200 font-bold shadow-2xl" href="/">Home</a></li>
+        <li><a class="hover:text-gray-200 font-bold" href="{% url 'productPerCategory' 'all' %}">Catagory</a></li>
+        <li><!-- component -->
+          <div class="flex justify-center">
+            <div class="relative inline-block mb-20">
+              <!-- Dropdown toggle button -->
+              <button id="dropdown-toggle" class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
+                <span class="mx-1">{% if user.is_authenticated %} {{ user.username }} {% else %} Connetez-vous {% endif %}</span>
+                <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z" fill="currentColor"></path>
+                </svg>
+              </button>
+                  
+              <!-- Dropdown menu -->
+              <div id="dropdown-menu"  class="absolute right-0 z-20 w-80 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800 hidden" style="z-index: 9999;">
+                <a href="#" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200" alt="jane avatar">
+                  <div class="mx-1">
+                    <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ user.username }}</h1>
+                    <!-- <p class="text-sm text-gray-500 dark:text-gray-400">janedoe@exampl.com</p> -->
+                  </div>
+                </a>
+                  
+            
+                        <hr class="border-gray-200 dark:border-gray-700 ">
+                        
+                        <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Mon compte
+                        </a>
+                        
+                        <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Commandes
+                        </a>
+                        <a href="{% url 'login' %}" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            {% if user.is_authenticated %}
+
+                            <button ><p>Se Deconnecter</p></button>
+
+
+                            {% else %}
+
+
+                            <button ><p>Se Connecter</p></button>
+
+
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
+      </ul>
+      <!-- Header Icons -->
+      <div class="hidden xl:flex items-center space-x-5 items-center">
+        <a class="hover:text-gray-200" href="">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </a>
+        <a class="flex items-center hover:text-gray-200" href="{% url 'cart' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          <span class="flex absolute -mt-5 ml-4">
+            <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+              </span>
+            </span>
+        </a>
+    <!-- Sign In / Register -->
+      </div>
+
+    </div>
+    <!-- Responsive navbar -->
+    <a class="xl:hidden flex mr-6 items-center" href="{% url 'cart' %}">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      <span class="flex absolute -mt-5 ml-4">
+        <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+        </span>
+      </span>
+    </a>
+    <a class="navbar-burger self-center mr-12 xl:hidden" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </a>
+
+  </nav>
+  
+</section>
+
+
+<script>
+    const toggleBtn = document.getElementById('dropdown-toggle');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    toggleBtn.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden');
+    });
+</script>
+
+

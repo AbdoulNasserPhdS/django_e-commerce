@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+
+<div class="md:w-1/2 mx-auto my-10 py-10 bg-white shadow-lg rounded-lg px-8">
+  <h2 class="text-2xl font-semibold mb-6 text-center">Informations de paiement</h2>
+
+
+  
+  <form method="POST">
+  
+      {% csrf_token %}
+      {% for field in form %}
+          <div class="mb-6">
+              <label class="{% for class in field.label_classes %}{{ class }} {% endfor %}"
+                     for="{{ field.auto_id }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                  <ul class="text-red-500">
+                      {% for error in field.errors %}
+                          <li>{{ error }}</li>
+                      {% endfor %}
+                  </ul>
+              {% endif %}
+          </div>
+      {% endfor %}
+  
+
+    <div class="flex justify-center">
+      <button type="submit" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        Passez au paiement
+      </button>
+    </div>
+
+    <!-- <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button> -->
+</form>
+
+
+
+<!-- 
+
+    <form>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="nom">
+          Nom complet
+        </label>
+        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="nom" type="text" placeholder="Entrez votre nom complet" value="{{ user.username }}">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="adresse">
+          Adresse
+        </label>
+        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="adresse" type="text" placeholder="Entrez votre adresse">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="ville">
+          Ville
+        </label>
+        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="ville" type="text" placeholder="Entrez votre ville">
+      </div>
+      <div class="flex justify-between mb-4">
+        <div class="w-1/2 mr-2">
+          <label class="block text-gray-700 font-bold mb-2" for="code_postal">
+            Code postal
+          </label>
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="code_postal" type="text" placeholder="Entrez votre code postal">
+        </div>
+        <div class="w-1/2 ml-2">
+          <label class="block text-gray-700 font-bold mb-2" for="pays">
+            Pays
+          </label>
+          <select class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="pays">
+            <option value="">Choisir un pays</option>
+            <option value="france">France</option>
+            <option value="belgique">Belgique</option>
+            <option value="suisse">Suisse</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="telephone">
+          Téléphone
+        </label>
+        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="telephone" type="text" placeholder="Entrez votre numéro de téléphone">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 font-bold mb-2" for="email">
+        Adresse email
+      </label>
+      <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="email" type="email" placeholder="Entrez votre adresse email">
+    </div>
+    <div class="flex justify-center">
+      <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        Passez au paiement
+      </button>
+    </div>
+</form> -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Enregistre un gestionnaire d'événement lorsque le champ "country" change
+  $('#id_country').change(function() {
+    var country_id = $(this).val(); // Récupère l'ID de pays sélectionné
+    $.ajax({
+      url: '{% url "get_cities" %}',
+      data: {'country_id': country_id},
+      dataType: 'json',
+      success: function(response) {
+        // Met à jour les options du champ "city"
+        var cities = response.cities;
+        var options = '<option value="">Choisissez une ville</option>';
+        for (var i=0; i<cities.length; i++) {
+          options += '<option value="' + cities[i][0] + '">' + cities[i][1] + '</option>';
+        }
+        $('#id_city').html(options);
+      }
+    });
+  });
+});
+</script>
+
+    
+
+{% endblock %}

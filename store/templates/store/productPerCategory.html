@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<div style="overflow-x: auto;" >
+
+
+
+<div class="bg-transparent overflow-auto " >
+    <ul class="flex   rounded-lg p-4  mx-auto justify-center " style=" margin-top: 5px; ">
+    <li class="-mb-px mr-1  bg-gray-700  ">
+        <a class=" inline-block  rounded-t-lg py-2 px-4 text-gray-300 font-semibold" href="{% url 'productPerCategory' 'all' %}">All</a>
+    </li>
+    {% for category in categories %}
+    <li class="-mb-px mr-1 shadow-2xl bg-gray-700 ">
+        <a class="inline-block  rounded-t-lg py-2 px-4 text-gray-300 font-semibold" href="{% url 'productPerCategory' category.0 %}">{{ category.1 }}</a>
+    </li>
+    {% endfor %}
+    </ul>
+</div>
+
+
+</div>
+
+
+
+
+
+<div style="overflow-x: auto;" >
+    <ul class="flex border rounded-lg p-4  mx-auto justify-center" style=" margin-top: 5px; margin-bottom: 5px;">
+      <li class="-mb-px mr-1 border border-gray-300  rounded-t-lg">
+        <a class="bg-white inline-block border-l border-t border-r rounded-t-lg py-2 px-4 text-gray-900 font-semibold" href="{% url 'productPerCategory' 'all' %}">All</a>
+      </li>
+      {% for subCategory in subCategories %}
+      <li class="-mb-px mr-1 border border-gray-300 rounded-t-lg">
+        <a class="bg-white inline-block border-l border-t border-r rounded-t-lg py-2 px-4 text-gray-900 font-semibold" href="#">{{ subCategory.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+
+{% comment %} <a href="{% url 'show' product.id %}" ><h2>{{ product.name }}</h2></a> {% endcomment %}
+
+<!-- component -->
+<!-- UI card from https://uxplanet.org/ultimate-guide-for-designing-ui-cards-59488a91b44f -->
+
+<!-- component -->
+<style>@import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css);</style>
+<!-- <div class="min-w-screen min-h-screen bg-yellow-300 flex items-center p-5 lg:p-10 overflow-hidden relative " style="margin: 10px; border-radius: 10px;"> -->
+  <div class="min-w-screen  p-5 lg:p-10  relative " style="background-color: #ECF2FF ;">
+    <div class="w-11/12 max-w-screen-xl rounded bg-white shadow-xl mx-auto text-gray-800 relative md:text-left">
+  
+      <div >
+          <!-- <h1 class="font-bold uppercase text-2xl  justify-center">Nos vetemnts</h1> -->
+          <h1 class="font-bold uppercase text-2xl mb-5 " style="padding:10px; text-align: center;">La qualité à petit prix <br>Waterproof Jacket.</h1>
+      
+      
+
+        </div>
+
+
+        <div class="md:flex items-center -mx-10">
+
+          <div class="relative m-3 flex flex-wrap mx-auto justify-center">
+
+            {% for product in products%}
+
+
+        
+      <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer"  >
+        <div class="overflow-x-hidden rounded-2xl relative">
+            <a href="{% url 'show' product.id %}">
+          <img class="h-40 rounded-2xl w-full object-cover" src="{{ product.image.url }}">
+            </a>
+          <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group">
+            <a href="#" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-50 opacity-70" fill="none" viewBox="0 0 24 24" stroke="black">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+        </a>
+          </p>
+        </div>
+        <div class="mt-4 pl-2 mb-2 flex justify-between ">
+          <div>
+            <p class="text-lg font-semibold text-gray-900 mb-0">{{product.name}}</p>
+            <p class="text-md text-gray-800 mt-0">${{product.price}}</p>
+          </div>
+          <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="gray">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+              
+        
+              {% endfor %}
+        
+            </div>
+        
+        
+            
+          </div>
+
+
+{% endblock %}

@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+
+
+<!-- component -->
+<!-- This is an example component -->
+<div class="carousel mx-auto shadow-2xl" style=" padding: 20px;  background: linear-gradient(#e66465, #9198e5);">
+
+	<div id="default-carousel" class="relative" data-carousel="static">
+        <!-- Carousel wrapper -->
+        <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96 w-10/12 py-10" style=" margin: 0 auto;">
+          <!-- Item 1 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
+              <img src="https://static.vecteezy.com/ti/vecteur-libre/p3/1925526-fond-noir-vendredi-ou-offre-promotion-promotion-vente-banniere-pour-entreprise-et-affiche-publicitaire-vectoriel.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+          </div>
+          <!-- Item 2 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img src="https://www.callbell.eu/wp-content/uploads/2022/05/img-1-1080x675.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+          </div>
+          <!-- Item 3 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+          </div>
+      </div>
+      
+        <!-- Slider indicators -->
+        <div class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+        </div>
+        <!-- Slider controls -->
+        <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
+            <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-red-900 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                <span class="hidden">Previous</span>
+            </span>
+        </button>
+        <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
+            <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-red-900 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <span class="hidden">Next</span>
+            </span>
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="bg-gray-800" style="overflow-x: auto; " >
+  <ul class="flex   rounded-lg p-4  mx-auto justify-center" style=" margin-top: 5px; margin-bottom: 5px;">
+    <li class="-mb-px mr-1  bg-gray-700  ">
+      <a class=" inline-block  rounded-t-lg py-2 px-4 text-gray-300 font-semibold" href="{% url 'productPerCategory' 'all' %}">All</a>
+    </li>
+    {% for category in categories %}
+    <li class="-mb-px mr-1 border border-gray-300 rounded-t-lg">
+      <a class="bg-white inline-block border-l border-t border-r rounded-t-lg py-2 px-4 text-gray-900 font-semibold" href="{% url 'productPerCategory' category.0 %}">{{ category.1 }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+ -->
+
+
+
+ <div class="bg-transparent overflow-auto " >
+  <ul class="flex   rounded-lg p-4  mx-auto justify-center " style=" margin-top: 5px; ">
+    <li class="-mb-px mr-1  bg-gray-700  ">
+      <a class=" inline-block  rounded-t-lg py-2 px-4 text-gray-300 font-semibold" href="{% url 'productPerCategory' 'all' %}">All</a>
+    </li>
+    {% for category in categories %}
+    <li class="-mb-px mr-1 shadow-2xl bg-gray-700 ">
+      <a class="inline-block  rounded-t-lg py-2 px-4 text-gray-300 font-semibold" href="{% url 'productPerCategory' category.0 %}">{{ category.1 }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+
+
+
+<!-- component -->
+<style>@import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css);</style>
+<!-- <div class="min-w-screen min-h-screen bg-yellow-300 flex items-center p-5 lg:p-10 overflow-hidden relative " style="margin: 10px; border-radius: 10px;"> -->
+  <div class="min-w-screen p-5 lg:p-10 overflow-hidden relative " style="background-color: #ECF2FF ;">
+    <div class="w-11/12 max-w-screen-xl rounded bg-white shadow-xl mx-auto text-gray-800 relative md:text-left">
+  
+          <!-- <h1 class="font-bold uppercase text-2xl  justify-center">Nos vetemnts</h1> -->
+        <h1 class="font-bold uppercase text-xl mb-5 py-5 " style=" text-align: center;">La qualité à petit prix <br>Waterproof Jacket.</h1>
+      
+    
+
+        <div class="md:flex items-center -mx-10">
+
+          <div class="relative m-3 flex flex-wrap mx-auto justify-center">
+
+            {% for product in products%}
+
+                <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl  mx-1  cursor-pointer " style="margin-bottom: 30px;" >
+                  <div class="overflow-x-hidden rounded-2xl relative">
+                      <a href="{% url 'show' product.id %}">
+                    <img class="h-40 rounded-2xl w-full object-cover" src="{{ product.image.url }}">
+                      </a>
+                    <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group">
+                      <a href="#" >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-50 opacity-70" fill="none" viewBox="0 0 24 24" stroke="black">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                  </a>
+                    </p>
+                  </div>
+                  <div class="mt-4 pl-2 mb-2 flex justify-between ">
+                    <div>
+                      <p class="text-lg font-semibold text-gray-900 mb-0">{{product.name}}</p>
+                      <p class="text-md text-gray-800 mt-0">${{product.price}}</p>
+                    </div>
+                    <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="gray">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              
+        
+              {% endfor %}
+        
+            </div>
+        
+        
+            
+          </div>
+          <div class="flex justify-center pagination">
+
+            <!-- component -->
+            <div class="
+            inline-flex
+            border border-[#e4e4e4]
+            bg-white
+            p-4
+            rounded-xl
+            items-center
+            ">
+      
+            {% if products.has_previous %}
+      
+            <ul class="flex items-center -mx-[6px]">
+      
+              
+              <li class="px-[6px]">
+                  <a href="?page=1" class="
+                    w-9
+                    h-9
+                    flex
+                    items-center
+                    justify-center
+                    rounded-md
+                    border border-[#EDEFF1]
+                    text-[#838995] text-base
+                    hover:bg-primary hover:border-primary hover:text-white
+                    ">First
+                  </a>
+              </li>
+      
+      
+      
+              <li class="px-[6px]">
+                <a href="?page={{ products.previous_page_number }}" class="
+                  w-9
+                  h-9
+                  flex
+                  items-center
+                  justify-center
+                  rounded-md
+                  border border-[#EDEFF1]
+                  text-[#838995] text-base
+                  hover:bg-primary hover:border-primary hover:text-white
+                  ">
+                  <span>
+                      <svg width="8" height="15" viewBox="0 0 8 15" class="fill-current stroke-current">
+                        <path d="M7.12979 1.91389L7.1299 1.914L7.1344 1.90875C7.31476 1.69833 7.31528 1.36878 7.1047 1.15819C7.01062 1.06412 6.86296 1.00488 6.73613 1.00488C6.57736 1.00488 6.4537 1.07206 6.34569 1.18007L6.34564 1.18001L6.34229 1.18358L0.830207 7.06752C0.830152 7.06757 0.830098 7.06763 0.830043 7.06769C0.402311 7.52078 0.406126 8.26524 0.827473 8.73615L0.827439 8.73618L0.829982 8.73889L6.34248 14.6014L6.34243 14.6014L6.34569 14.6047C6.546 14.805 6.88221 14.8491 7.1047 14.6266C7.30447 14.4268 7.34883 14.0918 7.12833 13.8693L1.62078 8.01209C1.55579 7.93114 1.56859 7.82519 1.61408 7.7797L1.61413 7.77975L1.61729 7.77639L7.12979 1.91389Z" stroke-width="0.3"></path>
+                      </svg>
+                  </span>
+                </a>
+            </li>
+          </ul>
+      
+          {% endif %}
+      
+          <span class="current">
+            Page {{ products.number }} of {{ products.paginator.num_pages }}.
+          </span>
+      
+      
+      
+          {% if products.has_next %}
+      
+      
+          <ul class="flex items-center -mx-[6px]">
+      
+      
+              <li class="px-[6px]">
+                  <a href="?page={{ products.next_page_number }}" class="
+                    w-9
+                    h-9
+                    flex
+                    items-center
+                    justify-center
+                    rounded-md
+                    border border-[#EDEFF1]
+                    text-[#838995] text-base
+                    hover:bg-primary hover:border-primary hover:text-white
+                    ">   
+                    <span>
+                      <svg width="8" height="15" viewBox="0 0 8 15" class="fill-current stroke-current">
+                        <path d="M0.870212 13.0861L0.870097 13.086L0.865602 13.0912C0.685237 13.3017 0.684716 13.6312 0.895299 13.8418C0.989374 13.9359 1.13704 13.9951 1.26387 13.9951C1.42264 13.9951 1.5463 13.9279 1.65431 13.8199L1.65436 13.82L1.65771 13.8164L7.16979 7.93248C7.16985 7.93243 7.1699 7.93237 7.16996 7.93231C7.59769 7.47923 7.59387 6.73477 7.17253 6.26385L7.17256 6.26382L7.17002 6.26111L1.65752 0.398611L1.65757 0.398563L1.65431 0.395299C1.454 0.194997 1.11779 0.150934 0.895299 0.373424C0.695526 0.573197 0.651169 0.908167 0.871667 1.13067L6.37922 6.98791C6.4442 7.06886 6.43141 7.17481 6.38592 7.2203L6.38587 7.22025L6.38271 7.22361L0.870212 13.0861Z" stroke-width="0.3"></path>
+                      </svg>
+                  </span>
+                  </a>
+              </li>
+      
+              <li class="px-[6px]">
+                <a href="?page={{ products.paginator.num_pages }}" class="
+                  w-9
+                  h-9
+                  flex
+                  items-center
+                  justify-center
+                  rounded-md
+                  border border-[#EDEFF1]
+                  text-[#838995] text-base
+                  hover:bg-primary hover:border-primary hover:text-white
+                  ">Last
+              
+                </a>
+            </li>
+            </ul>
+          {% endif %}
+      
+      
+            </div>
+          </div>
+      
+        </div> 
+        
+        
+    </div>
+
+
+        
+  
+
+
+    
+</div>
+
+
+
+
+{% endblock %}
+
+
