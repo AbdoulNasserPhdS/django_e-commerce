@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-b&_9e4_4i=id6qjb^*q+1!b2zp6x$hv()%4mpw&-un)!inmf!x'
-import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-b&_9e4_4i=id6qjb^*q+1!b2zp6x$hv()%4mpw&-un)!inmf!x')
 
 
@@ -52,6 +52,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,6 +136,7 @@ STATICFILES_DIRS = (
 )
 
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -157,19 +160,24 @@ AUTH_USER_MODEL = 'accounts.Shopper'
 
 
 
-STRIPE_PUBLIC_KEY = "pk_test_51N1EpgEusPeqS8yL6ynepbRDCvwlJ5x6M1EXEe6cjaNHCoEs12cqz7IfQIXeEP3B6APBdqh5QUFD4NWoRTCHjtOu00Z3vE760k"
-STRIPE_SECRET_KEY = "sk_test_51N1EpgEusPeqS8yLCKljEvt1I8EzuxHnqm6TG9s7TRG80wyicLEF3ECwGeIDV5wIGcQxxriPSoibDYd8v4UzSaGw00Wu4T6NLd"
+
+# STRIPE_PUBLIC_KEY = "pk_test_51N1EpgEusPeqS8yL6ynepbRDCvwlJ5x6M1EXEe6cjaNHCoEs12cqz7IfQIXeEP3B6APBdqh5QUFD4NWoRTCHjtOu00Z3vE760k"
+# STRIPE_SECRET_KEY = "sk_test_51N1EpgEusPeqS8yLCKljEvt1I8EzuxHnqm6TG9s7TRG80wyicLEF3ECwGeIDV5wIGcQxxriPSoibDYd8v4UzSaGw00Wu4T6NLd"
+# STRIPE_WEBHOOK_SECRET = "whsec_ec3229e46d7caf82e21f92e3ea219898fbb998fc004a5b7cd18c5de87d09fad1"
 
 
-STRIPE_WEBHOOK_SECRET = "whsec_ec3229e46d7caf82e21f92e3ea219898fbb998fc004a5b7cd18c5de87d09fad1"
+STRIPE_PUBLIC_KEY = os.environ.get('DJANGO_STRIPE_PUBLIC_KEY', 'pk_test_51N1EpgEusPeqS8yL6ynepbRDCvwlJ5x6M1EXEe6cjaNHCoEs12cqz7IfQIXeEP3B6APBdqh5QUFD4NWoRTCHjtOu00Z3vE760k')
+STRIPE_SECRET_KEY  = os.environ.get('DJANGO_STRIPE_SECRET_KEY', 'sk_test_51N1EpgEusPeqS8yLCKljEvt1I8EzuxHnqm6TG9s7TRG80wyicLEF3ECwGeIDV5wIGcQxxriPSoibDYd8v4UzSaGw00Wu4T6NLd')
+STRIPE_WEBHOOK_SECRET = os.environ.get('DJANGO_STRIPE_WEBHOOK_SECRET_KEY', 'whsec_ec3229e46d7caf82e21f92e3ea219898fbb998fc004a5b7cd18c5de87d09fad1')
+
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "abdoulnassertheking@gmail.com"
-EMAIL_HOST_PASSWORD = "soumana11373"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
 
 
 
@@ -178,3 +186,10 @@ EMAIL_HOST_PASSWORD = "soumana11373"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+# Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
